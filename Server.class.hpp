@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 10:04:38 by gleger            #+#    #+#             */
-/*   Updated: 2015/03/14 10:49:51 by gleger           ###   ########.fr       */
+/*   Updated: 2015/03/16 10:30:33 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class Server
 		int		row;
 		int		location;
 		int		used;
+		float	medium;
 		
 		Server();
 		Server(int size, int cap);

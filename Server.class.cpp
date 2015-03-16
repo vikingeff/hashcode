@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 10:05:33 by gleger            #+#    #+#             */
-/*   Updated: 2015/03/14 11:12:39 by gleger           ###   ########.fr       */
+/*   Updated: 2015/03/16 10:13:35 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ Server::Server()
 
 Server::Server(int size, int cap) : size(size), cap(cap)
 {
-	std::cout<<"server number "<<getNbServer()+1<<std::endl;
+	//std::cout<<"server number "<<getNbServer()+1 << " " <<size << " , " << cap <<std::endl;
 	row = 0;
 	location = 0;
 	grp = 0;
 	used = 0;
+	medium = 0;
 	Server::_nbServer+=1;
 	return;
 }
