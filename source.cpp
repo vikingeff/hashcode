@@ -77,11 +77,30 @@ int			parser(char *file, Server **tab, Datacenter *dc, std::vector<std::vector<i
 void order(Datacenter *dc, Server **tab)
 {
 	Server		*buffer;
+
 	for (int i=0; i< dc->nb_srv-1; i++)
 	{
 		for (int j=0; j<dc->nb_srv-1; j++)
 		{
 			if (tab[j]->medium<tab[j+1]->medium)
+			{
+				buffer = new Server (*tab[j]);
+				tab[j]=tab[j+1];
+				tab[j+1]=buffer;
+			}
+		}
+	}
+}
+
+void reorder(Datacenter *dc, Server **tab)
+{
+	Server		*buffer;
+
+	for (int i=0; i< dc->nb_srv-1; i++)
+	{
+		for (int j=0; j<dc->nb_srv-1; j++)
+		{
+			if (tab[j]->index>tab[j+1]->index)
 			{
 				buffer = new Server (*tab[j]);
 				tab[j]=tab[j+1];
@@ -126,7 +145,7 @@ void put_srv(Datacenter *dc, Server **tab, std::vector<std::vector<int> > *tab_s
 
 	for (int i=0; i< 625; i++)//dc->nb_srv; i++)
 	{
-		if (index<dc->nb_grp)
+		if (index<dc->nb_grp-1)
 			index++;
 		else
 			index=0;
@@ -149,7 +168,7 @@ void put_srv(Datacenter *dc, Server **tab, std::vector<std::vector<int> > *tab_s
 					// }
 					//if (fsize==tab[i]->size-1)
 				fsize=check_s(tab_sl, j, tab[i]->size);
-				std::cout<<fsize<<std::endl;
+				//std::cout<<fsize<<std::endl;
 				if (fsize==-1)
 				{
 					full=true;
@@ -161,7 +180,12 @@ void put_srv(Datacenter *dc, Server **tab, std::vector<std::vector<int> > *tab_s
 					{
 						//ok=true;
 						for (int m=fsize; m<fsize+tab[i]->size; m++)
-							(*tab_sl)[j][m]=tab[i]->index;
+						{
+							if (tab[i]->index != 0)
+								(*tab_sl)[j][m]=tab[i]->index;
+							else
+								(*tab_sl)[j][m]=625;
+						}
 						tab[i]->used=true;
 						tab[i]->row=j;
 						tab[i]->location=fsize;
@@ -192,6 +216,32 @@ void put_srv(Datacenter *dc, Server **tab, std::vector<std::vector<int> > *tab_s
 		if (tab[i]->used)
 			continue;
 	}
+}
+
+void makefile(Server **tab)
+{
+	//int loop=0;
+	std::ofstream	outfile("output");
+	//Server		*buffer;
+	std::string		txt;
+
+	for (int i=0; i<625; i++)
+	{
+		if (tab[i]->used)
+		{
+			txt.append(std::to_string(tab[i]->row));
+			txt.append(" ");
+			txt.append(std::to_string(tab[i]->location));
+			txt.append(" ");
+			txt.append(std::to_string(tab[i]->grp));
+			txt.append("\n");
+		}
+		else
+			txt.append("x\n");
+		outfile << txt;
+		txt="";
+	}
+	outfile.close();
 }
 
 int		main(int argc, char **argv)
@@ -229,9 +279,13 @@ int		main(int argc, char **argv)
 		// for (int i=0; i< size; i++)
 		// 	std::cout<<"srv number " << list [i]->index << std::endl << " size: "<< list [i]->size << " capacity : " << list [i]->cap << " med : " << list [i]->medium << std::endl;
 		put_srv(bigD, list, &slots);
-		for (int i=0; i<625; i++)
-			std::cout<<*list[i]<<std::endl;
+		// for (int i=0; i<625; i++)
+		// 	std::cout<<*list[i]<<std::endl;
 		printmap(bigD, slots);
+		reorder(bigD, list);
+		// for (int i=0; i<625; i++)
+		// 	std::cout<<*list[i]<<std::endl;
+		makefile(list);
 	}
 	else
 		std::cout<<"If you give me no file i'm useless try again"<<std::endl;
