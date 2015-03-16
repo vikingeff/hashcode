@@ -91,12 +91,40 @@ void order(Datacenter *dc, Server **tab)
 	}
 }
 
+int	check_s(std::vector<std::vector<int> > *tab_sl, int row, int size)
+{
+	int loop = 0;
+
+	for (int i=0; i<SIZEY; i++)
+	{
+		//std::cout<<i<<" : "<<(*tab_sl)[row][i]<<std::endl;
+		if ((*tab_sl)[row][i]<0)
+			loop=0;
+		else if ((*tab_sl)[row][i]==0)
+			loop++;
+		else
+		{
+			i=i+loop;
+			loop=0;
+		}
+		if (loop==size)
+		{
+			//std::cout<<i<<" : "<<size<<std::endl;
+			return (i+1-size);
+		}
+	}
+	return (-1);
+}
+
 void put_srv(Datacenter *dc, Server **tab, std::vector<std::vector<int> > *tab_sl)
 {
 	int			index = -1;
-	bool		free=false;
+	int			fsize=-1;
+	// int			loop=0;
+	//bool		ok=false;
+	bool		full=false;
 
-	for (int i=0; i< dc->nb_srv; i++)
+	for (int i=0; i< 625; i++)//dc->nb_srv; i++)
 	{
 		if (index<dc->nb_grp)
 			index++;
@@ -107,23 +135,62 @@ void put_srv(Datacenter *dc, Server **tab, std::vector<std::vector<int> > *tab_s
 		{
 			for (int k=0; k<dc->r_size-tab[i]->size; k++)
 			{
-				for (int l=k; l<tab[i]->size; l++)
+				// for (int l=k; l<tab[i]->size; l++)
+				// {
+					// loop++;
+					// std::cout<<j<<":"<<l<<":"<<(*tab_sl)[j][l]<<std::endl;
+					// if ((*tab_sl)[j][l]==0)
+					// 	fsize++;
+					// else
+					// {
+					// 	k=k+loop;
+					// 	loop=0;
+					// 	break;
+					// }
+					//if (fsize==tab[i]->size-1)
+				fsize=check_s(tab_sl, j, tab[i]->size);
+				std::cout<<fsize<<std::endl;
+				if (fsize==-1)
 				{
-					if ((*tab_sl)[l][j]!=0)
+					full=true;
+					break;
+				}
+				else
+				{
+					if (fsize>=0)
+					{
+						//ok=true;
+						for (int m=fsize; m<fsize+tab[i]->size; m++)
+							(*tab_sl)[j][m]=tab[i]->index;
+						tab[i]->used=true;
+						tab[i]->row=j;
+						tab[i]->location=fsize;
+						k=k+fsize;
 						break;
-					else
-						free=true;
+						// for (int p=0; p<dc->r_size; p++)
+						// {
+						// 	std::cout<<(*tab_sl)[j][p]<<" ";
+						// }
+						// std::cout<<std::endl;
+						//ok=false;
+					//}
+					}
 				}
-				if (free)
-				{
-					for (int l=k; l<tab[i]->size; l++)
-						(*tab_sl)[l][j]=i;
-					tab[i]->used=true;
-				}
+				fsize=-1;
+				// loop=0;
+				// if (tab[i]->used)
+				// 	break;
 			}
-			if (tab[i]->used)
+			if (full)
+			{
+				full=false;
+				continue;
+			}
+			else if (tab[i]->used)
 				break;
 		}
+		if (tab[i]->used)
+			continue;
 	}
 }
 
@@ -164,7 +231,7 @@ int		main(int argc, char **argv)
 		put_srv(bigD, list, &slots);
 		for (int i=0; i<625; i++)
 			std::cout<<*list[i]<<std::endl;
-		//printmap(bigD, slots);
+		printmap(bigD, slots);
 	}
 	else
 		std::cout<<"If you give me no file i'm useless try again"<<std::endl;
