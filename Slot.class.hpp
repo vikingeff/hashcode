@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Server.class.hpp                                   :+:      :+:    :+:   */
+/*   Slot.class.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/14 10:04:38 by gleger            #+#    #+#             */
-/*   Updated: 2015/03/16 11:30:26 by gleger           ###   ########.fr       */
+/*   Created: 2015/03/16 10:47:42 by gleger            #+#    #+#             */
+/*   Updated: 2015/03/16 10:56:06 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERVER_CLASS_HPP
-# define SERVER_CLASS_HPP
+#ifndef SLOT_CLASS_HPP
+# define SLOT_CLASS_HPP
 
 # include <iostream>
 
-class Server
+class Slot
 {
+
 	public:
-		int		size;
-		int		cap;
-		int		grp;
-		int		row;
-		int		location;
-		int		used;
-		int		index;
-		float	medium;
-		
-		Server();
-		Server(int size, int cap, int index);
-		virtual ~Server();
+		int		xval;
+		int		yval;
+
+		Slot();
+		Slot(int x, int y);
+		virtual ~Slot();
 
 		static int		getNbServer(void);
 
 	private:
-		static int	_nbServer;
+		static int	_nbSlot;
 };
 
 # endif

@@ -16,7 +16,11 @@ HEADERS = -I .
 
 SRC =	source.cpp \
 		Server.class.cpp \
-		Datacenter.class.cpp
+		Datacenter.class.cpp \
+		Slot.class.cpp
+
+INCLUDES = Server.class.hpp Datacenter.class.hpp \
+			Slot.class.hpp
 
 OBJ =	$(SRC:.cpp=.o)
  
@@ -28,7 +32,7 @@ C++ =	g++ -std=c++11 -g -Wall -Wextra -Werror -O3
 
 all:		$(NAME)
 
-$(NAME):	$(OBJ) Server.class.hpp Datacenter.class.hpp
+$(NAME):	$(OBJ) $(INCLUDES)
 	@echo "\033[1;35;m[Linking] \t\t\033[0m: " | tr -d '\n'
 	$(C++) -o $@ $(OBJ)
 	@echo "\033[1;32;m[Success] \t\t\t\033[0m"

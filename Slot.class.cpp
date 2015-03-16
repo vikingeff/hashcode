@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Server.class.hpp                                   :+:      :+:    :+:   */
+/*   Slot.class.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/14 10:04:38 by gleger            #+#    #+#             */
-/*   Updated: 2015/03/16 11:30:26 by gleger           ###   ########.fr       */
+/*   Created: 2015/03/16 10:47:54 by gleger            #+#    #+#             */
+/*   Updated: 2015/03/16 11:31:42 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERVER_CLASS_HPP
-# define SERVER_CLASS_HPP
+#include <Slot.class.hpp>
 
-# include <iostream>
-
-class Server
+Slot::Slot()
 {
-	public:
-		int		size;
-		int		cap;
-		int		grp;
-		int		row;
-		int		location;
-		int		used;
-		int		index;
-		float	medium;
-		
-		Server();
-		Server(int size, int cap, int index);
-		virtual ~Server();
+	Slot(0,0);
+	Slot::_nbSlot+=1;
+}
 
-		static int		getNbServer(void);
+Slot::Slot(int x, int y) : xval(x), yval(y)
+{
+	Slot::_nbSlot+=1;
+	return;
+}
 
-	private:
-		static int	_nbServer;
-};
+Slot::~Slot()
+{
+	Slot::_nbSlot-=1;
+	return;
+}
 
-# endif
+int				Slot::getNbServer(void)
+{
+	return Slot::_nbSlot;
+}
+
+int				Slot::_nbSlot = 0;

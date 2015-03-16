@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 10:05:33 by gleger            #+#    #+#             */
-/*   Updated: 2015/03/16 10:13:35 by gleger           ###   ########.fr       */
+/*   Updated: 2015/03/16 11:31:51 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 Server::Server()
 {
-	Server(0,0);
+	Server(0,0,0);
 	Server::_nbServer+=1;
 }
 
-Server::Server(int size, int cap) : size(size), cap(cap)
+Server::Server(int size, int cap, int index) : size(size), cap(cap), index(index)
 {
 	//std::cout<<"server number "<<getNbServer()+1 << " " <<size << " , " << cap <<std::endl;
 	row = 0;
