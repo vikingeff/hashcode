@@ -6,7 +6,7 @@
 /*   By: gleger <gleger@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 10:36:43 by gleger            #+#    #+#             */
-/*   Updated: 2015/03/14 12:00:41 by gleger           ###   ########.fr       */
+/*   Updated: 2015/03/16 13:41:08 by gleger           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ Datacenter::Datacenter(Datacenter const & ref)
 	Datacenter::_nbDatacenter++;
 	std::cout << "Datacenter Copy called." << std::endl;
 	*this = ref;
+	return;
 }
 
 Datacenter::~Datacenter()

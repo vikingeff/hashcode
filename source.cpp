@@ -74,6 +74,59 @@ int			parser(char *file, Server **tab, Datacenter *dc, std::vector<std::vector<i
 	return (index - dc->nb_na);
 }
 
+void order(Datacenter *dc, Server **tab)
+{
+	Server		*buffer;
+	for (int i=0; i< dc->nb_srv-1; i++)
+	{
+		for (int j=0; j<dc->nb_srv-1; j++)
+		{
+			if (tab[j]->medium<tab[j+1]->medium)
+			{
+				buffer = new Server (*tab[j]);
+				tab[j]=tab[j+1];
+				tab[j+1]=buffer;
+			}
+		}
+	}
+}
+
+void put_srv(Datacenter *dc, Server **tab, std::vector<std::vector<int> > *tab_sl)
+{
+	int			index = -1;
+	bool		free=false;
+
+	for (int i=0; i< dc->nb_srv; i++)
+	{
+		if (index<dc->nb_grp)
+			index++;
+		else
+			index=0;
+		tab[i]->grp=index;
+		for (int j=0; j<dc->rows; j++)
+		{
+			for (int k=0; k<dc->r_size-tab[i]->size; k++)
+			{
+				for (int l=k; l<tab[i]->size; l++)
+				{
+					if ((*tab_sl)[l][j]!=0)
+						break;
+					else
+						free=true;
+				}
+				if (free)
+				{
+					for (int l=k; l<tab[i]->size; l++)
+						(*tab_sl)[l][j]=i;
+					tab[i]->used=true;
+				}
+			}
+			if (tab[i]->used)
+				break;
+		}
+	}
+}
+
 int		main(int argc, char **argv)
 {
 	//std::vector<Server> Vserver;
@@ -99,15 +152,19 @@ int		main(int argc, char **argv)
 		// std::cout<<"srv number " << size << std::endl << " size: "<< list [size-1]->size << " capacity : " << list [size-1]->cap << std::endl;
 		// std::cout<<std::endl;
 		std::cout<<*bigD;
-		// for (int i=0; i< size; i++)
-		// {
-		// 	list [i]->medium = (float)list [i]->cap/list [i]->size;
-		// 	std::cout<<"srv number " << list [i]->index << std::endl << " size: "<< list [i]->size << " capacity : " << list [i]->cap << " med : " << list [i]->medium << std::endl;
-		// }
+		for (int i=0; i< size; i++)
+			list [i]->medium = (float)list [i]->cap/list [i]->size;
 		// std::cout<<Vserver.size()<<std::endl;
 		// std::cout<<med_size(&Vserver)<<std::endl;
 		// std::cout<<med_cap(&Vserver)<<std::endl;
-		printmap(bigD, slots);
+		//printmap(bigD, slots);
+		order(bigD, list);
+		// for (int i=0; i< size; i++)
+		// 	std::cout<<"srv number " << list [i]->index << std::endl << " size: "<< list [i]->size << " capacity : " << list [i]->cap << " med : " << list [i]->medium << std::endl;
+		put_srv(bigD, list, &slots);
+		for (int i=0; i<625; i++)
+			std::cout<<*list[i]<<std::endl;
+		//printmap(bigD, slots);
 	}
 	else
 		std::cout<<"If you give me no file i'm useless try again"<<std::endl;
