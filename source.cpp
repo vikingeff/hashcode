@@ -16,20 +16,123 @@ std::vector<std::vector<int> > create_vector(int nb_rg, int size_rg)
 	return vec;
 }
 
-void		printmap(Datacenter *dc, std::vector<std::vector< int > >map)
+void		printmap(Datacenter *dc, std::vector<std::vector< int > >map, Server **tab)
 {
+	int			buffer=0;
+
 	for ( std::vector<std::vector< int > >::size_type i = 0; i < map.size(); i++ )
 	{
 		for ( std::vector<int>::size_type j = 0; j < map[i].size(); j++ )
 		{
-			if (map[i][j] == -1)
-				std::cout << "\033[1;31;40mx\033[0m";
-			else
-				std::cout << "\033[1;32;40m" << map[i][j] << "\033[0m";
+			buffer = map[i][j];
+
+			if (buffer == 625)
+				buffer=0;
+			if (buffer == -1)
+				std::cout << "\033[0;30;40mX\033[0m ";
+			else 
+			{
+				switch	(tab[buffer]->grp)
+				{
+					case 0:std::cout << "\033[1;31;40m" << buffer << "\033[0m ";
+						break;
+					case 1:std::cout << "\033[1;33;40m" << buffer << "\033[0m ";
+						break;
+					case 2:std::cout << "\033[1;34;40m" << buffer << "\033[0m ";
+						break;
+					case 3:std::cout << "\033[1;35;40m" << buffer << "\033[0m ";
+						break;
+					case 4:std::cout << "\033[1;36;40m" << buffer << "\033[0m ";
+						break;
+					case 5:std::cout << "\033[1;37;40m" << buffer << "\033[0m ";
+						break;
+					case 6:std::cout << "\033[0;31;40m" << buffer << "\033[0m ";
+						break;
+					case 7:std::cout << "\033[0;32;40m" << buffer << "\033[0m ";
+						break;
+					case 8:std::cout << "\033[0;33;40m" << buffer << "\033[0m ";
+						break;
+					case 9:std::cout << "\033[0;34;40m" << buffer << "\033[0m ";
+						break;
+					case 10:std::cout << "\033[1;31;40m" << buffer << "\033[0m ";
+						break;
+					case 11:std::cout << "\033[1;33;40m" << buffer << "\033[0m ";
+						break;
+					case 12:std::cout << "\033[1;34;40m" << buffer << "\033[0m ";
+						break;
+					case 13:std::cout << "\033[1;35;40m" << buffer << "\033[0m ";
+						break;
+					case 14:std::cout << "\033[1;36;40m" << buffer << "\033[0m ";
+						break;
+					case 15:std::cout << "\033[1;37;40m" << buffer << "\033[0m ";
+						break;
+					case 16:std::cout << "\033[0;31;40m" << buffer << "\033[0m ";
+						break;
+					case 17:std::cout << "\033[0;32;40m" << buffer << "\033[0m ";
+						break;
+					case 18:std::cout << "\033[0;33;40m" << buffer << "\033[0m ";
+						break;
+					case 19:std::cout << "\033[0;34;40m" << buffer << "\033[0m ";
+						break;
+					case 20:std::cout << "\033[1;31;40m" << buffer << "\033[0m ";
+						break;
+					case 21:std::cout << "\033[1;33;40m" << buffer << "\033[0m ";
+						break;
+					case 22:std::cout << "\033[1;34;40m" << buffer << "\033[0m ";
+						break;
+					case 23:std::cout << "\033[1;35;40m" << buffer << "\033[0m ";
+						break;
+					case 24:std::cout << "\033[1;36;40m" << buffer << "\033[0m ";
+						break;
+					case 25:std::cout << "\033[1;37;40m" << buffer << "\033[0m ";
+						break;
+					case 26:std::cout << "\033[0;31;40m" << buffer << "\033[0m ";
+						break;
+					case 27:std::cout << "\033[0;32;40m" << buffer << "\033[0m ";
+						break;
+					case 28:std::cout << "\033[0;33;40m" << buffer << "\033[0m ";
+						break;
+					case 29:std::cout << "\033[0;34;40m" << buffer << "\033[0m ";
+						break;
+					case 30:std::cout << "\033[1;31;40m" << buffer << "\033[0m ";
+						break;
+					case 31:std::cout << "\033[1;33;40m" << buffer << "\033[0m ";
+						break;
+					case 32:std::cout << "\033[1;34;40m" << buffer << "\033[0m ";
+						break;
+					case 33:std::cout << "\033[1;35;40m" << buffer << "\033[0m ";
+						break;
+					case 34:std::cout << "\033[1;36;40m" << buffer << "\033[0m ";
+						break;
+					case 35:std::cout << "\033[1;37;40m" << buffer << "\033[0m ";
+						break;
+					case 36:std::cout << "\033[0;31;40m" << buffer << "\033[0m ";
+						break;
+					case 37:std::cout << "\033[0;32;40m" << buffer << "\033[0m ";
+						break;
+					case 38:std::cout << "\033[0;33;40m" << buffer << "\033[0m ";
+						break;
+					case 39:std::cout << "\033[0;34;40m" << buffer << "\033[0m ";
+						break;
+					case 40:std::cout << "\033[1;31;40m" << buffer << "\033[0m ";
+						break;
+					case 41:std::cout << "\033[1;33;40m" << buffer << "\033[0m ";
+						break;
+					case 42:std::cout << "\033[1;34;40m" << buffer << "\033[0m ";
+						break;
+					case 43:std::cout << "\033[1;35;40m" << buffer << "\033[0m ";
+						break;
+					case 44:std::cout << "\033[1;36;40m" << buffer << "\033[0m ";
+						break;
+					default:std::cout << "\033[1;32;40m" << buffer << "\033[0m ";
+						break;
+				}
+			}
 		}
-		std::cout << std::endl;
+		std::cout << std::endl << std::endl;
 	}
 	(void)dc;
+	(void)tab;
 }
 
 int			parser(char *file, Server **tab, Datacenter *dc, std::vector<std::vector<int> > *tab_sl)
@@ -230,11 +333,12 @@ int		main(int argc, char **argv)
 		put_srv(bigD, list, &slots);
 		// for (int i=0; i<625; i++)
 		// 	std::cout<<*list[i]<<std::endl;
-		printmap(bigD, slots);
+		//printmap(bigD, slots, list);
 		reorder(bigD, list);
 		// for (int i=0; i<625; i++)
 		// 	std::cout<<*list[i]<<std::endl;
 		makefile(list);
+		printmap(bigD, slots, list);
 	}
 	else
 		std::cout<<"If you give me no file i'm useless try again"<<std::endl;
