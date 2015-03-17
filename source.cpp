@@ -23,9 +23,9 @@ void		printmap(Datacenter *dc, std::vector<std::vector< int > >map)
 		for ( std::vector<int>::size_type j = 0; j < map[i].size(); j++ )
 		{
 			if (map[i][j] == -1)
-				std::cout << "\033[1;31;40mx\033[0m ";
+				std::cout << "\033[1;31;40mx\033[0m";
 			else
-				std::cout << "\033[1;32;40m" << map[i][j] << "\033[0m ";
+				std::cout << "\033[1;32;40m" << map[i][j] << "\033[0m";
 		}
 		std::cout << std::endl;
 	}
@@ -58,17 +58,13 @@ int			parser(char *file, Server **tab, Datacenter *dc, std::vector<std::vector<i
 		{
 			index++;
 			stream >> x >> y;
-			//std::cout<<"unavailable slot number " << index << std::endl << " x: "<< x << " y : " << y << std::endl;
 			(*tab_sl)[x][y]=-1;
-			//(void)tab_sl;
 		}
-		else// (index > dc->nb_na && index < dc->nb_srv+dc->nb_na)
+		else
 		{
 			index++;
 			stream >> x >> y;
-			//std::cout<<"srv number " << index - dc->nb_na << std::endl << " size: "<< x << " capacity : " << y << std::endl;
 			tab[index - dc->nb_na-1]= new Server (x, y, index - dc->nb_na-1);
-			//break;
 		}
 	}
 	return (index - dc->nb_na);
@@ -82,7 +78,7 @@ void order(Datacenter *dc, Server **tab)
 	{
 		for (int j=0; j<dc->nb_srv-1; j++)
 		{
-			if (tab[j]->medium<tab[j+1]->medium)
+			if (tab[j]->cap<tab[j+1]->cap)
 			{
 				buffer = new Server (*tab[j]);
 				tab[j]=tab[j+1];
@@ -116,7 +112,6 @@ int	check_s(std::vector<std::vector<int> > *tab_sl, int row, int size)
 
 	for (int i=0; i<SIZEY; i++)
 	{
-		//std::cout<<i<<" : "<<(*tab_sl)[row][i]<<std::endl;
 		if ((*tab_sl)[row][i]<0)
 			loop=0;
 		else if ((*tab_sl)[row][i]==0)
@@ -127,10 +122,7 @@ int	check_s(std::vector<std::vector<int> > *tab_sl, int row, int size)
 			loop=0;
 		}
 		if (loop==size)
-		{
-			//std::cout<<i<<" : "<<size<<std::endl;
 			return (i+1-size);
-		}
 	}
 	return (-1);
 }
@@ -139,11 +131,9 @@ void put_srv(Datacenter *dc, Server **tab, std::vector<std::vector<int> > *tab_s
 {
 	int			index = -1;
 	int			fsize=-1;
-	// int			loop=0;
-	//bool		ok=false;
 	bool		full=false;
 
-	for (int i=0; i< 625; i++)//dc->nb_srv; i++)
+	for (int i=0; i< 625; i++)
 	{
 		if (index<dc->nb_grp-1)
 			index++;
@@ -154,21 +144,7 @@ void put_srv(Datacenter *dc, Server **tab, std::vector<std::vector<int> > *tab_s
 		{
 			for (int k=0; k<dc->r_size-tab[i]->size; k++)
 			{
-				// for (int l=k; l<tab[i]->size; l++)
-				// {
-					// loop++;
-					// std::cout<<j<<":"<<l<<":"<<(*tab_sl)[j][l]<<std::endl;
-					// if ((*tab_sl)[j][l]==0)
-					// 	fsize++;
-					// else
-					// {
-					// 	k=k+loop;
-					// 	loop=0;
-					// 	break;
-					// }
-					//if (fsize==tab[i]->size-1)
 				fsize=check_s(tab_sl, j, tab[i]->size);
-				//std::cout<<fsize<<std::endl;
 				if (fsize==-1)
 				{
 					full=true;
@@ -178,7 +154,6 @@ void put_srv(Datacenter *dc, Server **tab, std::vector<std::vector<int> > *tab_s
 				{
 					if (fsize>=0)
 					{
-						//ok=true;
 						for (int m=fsize; m<fsize+tab[i]->size; m++)
 						{
 							if (tab[i]->index != 0)
@@ -191,19 +166,9 @@ void put_srv(Datacenter *dc, Server **tab, std::vector<std::vector<int> > *tab_s
 						tab[i]->location=fsize;
 						k=k+fsize;
 						break;
-						// for (int p=0; p<dc->r_size; p++)
-						// {
-						// 	std::cout<<(*tab_sl)[j][p]<<" ";
-						// }
-						// std::cout<<std::endl;
-						//ok=false;
-					//}
 					}
 				}
 				fsize=-1;
-				// loop=0;
-				// if (tab[i]->used)
-				// 	break;
 			}
 			if (full)
 			{
@@ -220,9 +185,7 @@ void put_srv(Datacenter *dc, Server **tab, std::vector<std::vector<int> > *tab_s
 
 void makefile(Server **tab)
 {
-	//int loop=0;
 	std::ofstream	outfile("output");
-	//Server		*buffer;
 	std::string		txt;
 
 	for (int i=0; i<625; i++)
@@ -246,9 +209,6 @@ void makefile(Server **tab)
 
 int		main(int argc, char **argv)
 {
-	//std::vector<Server> Vserver;
-	//Server		*buff;
-	//int				**slots;
 	std::vector<std::vector<int>> slots;
 	Server			*list[625];
 	Datacenter		*bigD;
@@ -256,25 +216,14 @@ int		main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-		// slots = new int *[10];
-		// for(int i = 0; i <10; i++)
-		// 	slots[i] = new int[10];
 		slots = create_vector(SIZEX, SIZEY);
 		bigD = new Datacenter();
 		std::cout<<"hello world"<<std::endl;
 		size = parser(argv[1], list, bigD, &slots);
 		std::cout<<"we have "<< bigD->getNbDatacenter() << " datacenter with : "<<size<<" Servers"<<std::endl;
-		//bigD->printdc();
-		// std::cout<<"srv number 0 " << std::endl << " size: "<< list [0]->size << " capacity : " << list [0]->cap << std::endl;
-		// std::cout<<"srv number " << size << std::endl << " size: "<< list [size-1]->size << " capacity : " << list [size-1]->cap << std::endl;
-		// std::cout<<std::endl;
 		std::cout<<*bigD;
 		for (int i=0; i< size; i++)
 			list [i]->medium = (float)list [i]->cap/list [i]->size;
-		// std::cout<<Vserver.size()<<std::endl;
-		// std::cout<<med_size(&Vserver)<<std::endl;
-		// std::cout<<med_cap(&Vserver)<<std::endl;
-		//printmap(bigD, slots);
 		order(bigD, list);
 		// for (int i=0; i< size; i++)
 		// 	std::cout<<"srv number " << list [i]->index << std::endl << " size: "<< list [i]->size << " capacity : " << list [i]->cap << " med : " << list [i]->medium << std::endl;
