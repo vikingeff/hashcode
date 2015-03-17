@@ -36,94 +36,94 @@ void		printmap(Datacenter *dc, std::vector<std::vector< int > >map, Server **tab
 				{
 					case 0:std::cout << "\033[1;31;40m" << buffer << "\033[0m ";
 						break;
-					case 1:std::cout << "\033[1;33;40m" << buffer << "\033[0m ";
-						break;
-					case 2:std::cout << "\033[1;34;40m" << buffer << "\033[0m ";
-						break;
-					case 3:std::cout << "\033[1;35;40m" << buffer << "\033[0m ";
-						break;
-					case 4:std::cout << "\033[1;36;40m" << buffer << "\033[0m ";
-						break;
-					case 5:std::cout << "\033[1;37;40m" << buffer << "\033[0m ";
-						break;
-					case 6:std::cout << "\033[0;31;40m" << buffer << "\033[0m ";
-						break;
-					case 7:std::cout << "\033[0;32;40m" << buffer << "\033[0m ";
-						break;
-					case 8:std::cout << "\033[0;33;40m" << buffer << "\033[0m ";
-						break;
-					case 9:std::cout << "\033[0;34;40m" << buffer << "\033[0m ";
-						break;
-					case 10:std::cout << "\033[1;31;40m" << buffer << "\033[0m ";
-						break;
-					case 11:std::cout << "\033[1;33;40m" << buffer << "\033[0m ";
-						break;
-					case 12:std::cout << "\033[1;34;40m" << buffer << "\033[0m ";
-						break;
-					case 13:std::cout << "\033[1;35;40m" << buffer << "\033[0m ";
-						break;
-					case 14:std::cout << "\033[1;36;40m" << buffer << "\033[0m ";
-						break;
-					case 15:std::cout << "\033[1;37;40m" << buffer << "\033[0m ";
-						break;
-					case 16:std::cout << "\033[0;31;40m" << buffer << "\033[0m ";
-						break;
-					case 17:std::cout << "\033[0;32;40m" << buffer << "\033[0m ";
-						break;
-					case 18:std::cout << "\033[0;33;40m" << buffer << "\033[0m ";
-						break;
-					case 19:std::cout << "\033[0;34;40m" << buffer << "\033[0m ";
-						break;
-					case 20:std::cout << "\033[1;31;40m" << buffer << "\033[0m ";
-						break;
-					case 21:std::cout << "\033[1;33;40m" << buffer << "\033[0m ";
-						break;
-					case 22:std::cout << "\033[1;34;40m" << buffer << "\033[0m ";
-						break;
-					case 23:std::cout << "\033[1;35;40m" << buffer << "\033[0m ";
-						break;
-					case 24:std::cout << "\033[1;36;40m" << buffer << "\033[0m ";
-						break;
-					case 25:std::cout << "\033[1;37;40m" << buffer << "\033[0m ";
-						break;
-					case 26:std::cout << "\033[0;31;40m" << buffer << "\033[0m ";
-						break;
-					case 27:std::cout << "\033[0;32;40m" << buffer << "\033[0m ";
-						break;
-					case 28:std::cout << "\033[0;33;40m" << buffer << "\033[0m ";
-						break;
-					case 29:std::cout << "\033[0;34;40m" << buffer << "\033[0m ";
-						break;
-					case 30:std::cout << "\033[1;31;40m" << buffer << "\033[0m ";
-						break;
-					case 31:std::cout << "\033[1;33;40m" << buffer << "\033[0m ";
-						break;
-					case 32:std::cout << "\033[1;34;40m" << buffer << "\033[0m ";
-						break;
-					case 33:std::cout << "\033[1;35;40m" << buffer << "\033[0m ";
-						break;
-					case 34:std::cout << "\033[1;36;40m" << buffer << "\033[0m ";
-						break;
-					case 35:std::cout << "\033[1;37;40m" << buffer << "\033[0m ";
-						break;
-					case 36:std::cout << "\033[0;31;40m" << buffer << "\033[0m ";
-						break;
-					case 37:std::cout << "\033[0;32;40m" << buffer << "\033[0m ";
-						break;
-					case 38:std::cout << "\033[0;33;40m" << buffer << "\033[0m ";
-						break;
-					case 39:std::cout << "\033[0;34;40m" << buffer << "\033[0m ";
-						break;
-					case 40:std::cout << "\033[1;31;40m" << buffer << "\033[0m ";
-						break;
-					case 41:std::cout << "\033[1;33;40m" << buffer << "\033[0m ";
-						break;
-					case 42:std::cout << "\033[1;34;40m" << buffer << "\033[0m ";
-						break;
-					case 43:std::cout << "\033[1;35;40m" << buffer << "\033[0m ";
-						break;
-					case 44:std::cout << "\033[1;36;40m" << buffer << "\033[0m ";
-						break;
+					// case 1:std::cout << "\033[1;33;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 2:std::cout << "\033[1;34;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 3:std::cout << "\033[1;35;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 4:std::cout << "\033[1;36;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 5:std::cout << "\033[1;37;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 6:std::cout << "\033[0;31;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 7:std::cout << "\033[0;32;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 8:std::cout << "\033[0;33;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 9:std::cout << "\033[0;34;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 10:std::cout << "\033[1;31;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 11:std::cout << "\033[1;33;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 12:std::cout << "\033[1;34;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 13:std::cout << "\033[1;35;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 14:std::cout << "\033[1;36;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 15:std::cout << "\033[1;37;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 16:std::cout << "\033[0;31;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 17:std::cout << "\033[0;32;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 18:std::cout << "\033[0;33;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 19:std::cout << "\033[0;34;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 20:std::cout << "\033[1;31;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 21:std::cout << "\033[1;33;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 22:std::cout << "\033[1;34;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 23:std::cout << "\033[1;35;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 24:std::cout << "\033[1;36;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 25:std::cout << "\033[1;37;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 26:std::cout << "\033[0;31;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 27:std::cout << "\033[0;32;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 28:std::cout << "\033[0;33;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 29:std::cout << "\033[0;34;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 30:std::cout << "\033[1;31;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 31:std::cout << "\033[1;33;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 32:std::cout << "\033[1;34;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 33:std::cout << "\033[1;35;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 34:std::cout << "\033[1;36;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 35:std::cout << "\033[1;37;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 36:std::cout << "\033[0;31;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 37:std::cout << "\033[0;32;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 38:std::cout << "\033[0;33;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 39:std::cout << "\033[0;34;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 40:std::cout << "\033[1;31;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 41:std::cout << "\033[1;33;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 42:std::cout << "\033[1;34;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 43:std::cout << "\033[1;35;40m" << buffer << "\033[0m ";
+					// 	break;
+					// case 44:std::cout << "\033[1;36;40m" << buffer << "\033[0m ";
+					// 	break;
 					default:std::cout << "\033[1;32;40m" << buffer << "\033[0m ";
 						break;
 				}
@@ -310,6 +310,38 @@ void makefile(Server **tab)
 	outfile.close();
 }
 
+int		calc_potential(int group, Server **tab)
+{
+	int		pot=0;
+	int		loop=-1;
+	int		*bkp;
+	int 	val=0;
+
+	std::cout << "\033[1;32;40m" << "group : "<<group<< "\033[0m "<<std::endl;
+	bkp = new int[625/45];
+	for (int i=0; i<625; i++)
+	{
+		if (tab[i]->grp==group && tab[i]->used)
+		{
+			bkp[++loop]=tab[i]->cap;
+			std::cout<<tab[i]->index<<" : ";
+			std::cout<<bkp[loop]<<std::endl;
+		}
+	}
+	int max = bkp[0];
+	for (int i=0; i<loop; i++)
+	{
+		if (bkp[i]>max)
+			max = bkp[i];
+		val+=bkp[i];
+		//std::cout<<bkp[i]<<std::endl;
+	}
+	std::cout<<"max : "<<max<<std::endl;
+	std::cout<<"total : "<<val<<std::endl;
+	std::cout<<"garanty : "<<val-max<<std::endl;
+	return (pot);
+}
+
 int		main(int argc, char **argv)
 {
 	std::vector<std::vector<int>> slots;
@@ -337,8 +369,16 @@ int		main(int argc, char **argv)
 		reorder(bigD, list);
 		// for (int i=0; i<625; i++)
 		// 	std::cout<<*list[i]<<std::endl;
-		makefile(list);
-		printmap(bigD, slots, list);
+		//makefile(list);
+		//printmap(bigD, slots, list);
+		//for (int i=0; i<45; i++)
+			calc_potential(15, list);
+			calc_potential(30, list);
+			calc_potential(37, list);
+			calc_potential(35, list);
+			calc_potential(36, list);
+			calc_potential(38, list);
+			
 	}
 	else
 		std::cout<<"If you give me no file i'm useless try again"<<std::endl;
