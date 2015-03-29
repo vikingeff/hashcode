@@ -370,7 +370,7 @@ int		main(int argc, char **argv)
 		// for (int i=0; i<625; i++)
 		// 	std::cout<<*list[i]<<std::endl;
 		//makefile(list);
-		//printmap(bigD, slots, list);
+		printmap(bigD, slots, list);
 		//for (int i=0; i<45; i++)
 			calc_potential(15, list);
 			calc_potential(30, list);
